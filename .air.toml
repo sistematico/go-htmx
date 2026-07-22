@@ -5,12 +5,17 @@ tmp_dir = "tmp"
   cmd = "go build -o ./tmp/go-htmx ./cmd/go-htmx"
   entrypoint = "./tmp/go-htmx"
   include_ext = ["go", "html", "css", "js"]
-  exclude_dir = ["tmp", "static"]
+  exclude_dir = ["tmp"]
   exclude_regex = ["_test\\.go"]
   delay = 200
 
 [log]
   time = false
+
+[proxy]
+  enabled = true
+  proxy_port = 8090
+  app_port = 8080
 
 [color]
   main = "magenta"

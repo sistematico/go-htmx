@@ -11,6 +11,10 @@ func New() *http.ServeMux {
 
 	mux.HandleFunc("GET /{$}", handlers.Home)
 	mux.HandleFunc("GET /hello", handlers.Hello)
+	mux.HandleFunc("GET /videos", handlers.Videos)
+	mux.HandleFunc("GET /videos/", handlers.Videos)
+	mux.Handle("GET /videos/{file}", assetHandler("static"))
+
 	mux.Handle("GET /{asset...}", assetHandler("static"))
 
 	mux.HandleFunc("/", handlers.NotFound)
@@ -30,7 +34,13 @@ func assetHandler(dir string) http.Handler {
 			handlers.NotFound(w, r)
 			return
 		}
-		f.Close()
+		defer f.Close()
+
+		info, err := f.Stat()
+		if err != nil || info.IsDir() {
+			handlers.NotFound(w, r)
+			return
+		}
 		fileServer.ServeHTTP(w, r)
 	})
 }

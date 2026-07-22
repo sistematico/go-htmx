@@ -49,6 +49,16 @@ go run ./cmd/go-htmx
 
 O servidor sobe em `http://localhost:8080`.
 
+### Live-reload com air
+
+O projeto usa o [air](https://github.com/air-verse/air) para live-reload durante o desenvolvimento (config em `.air.toml`):
+
+```bash
+make air
+```
+
+O air reinicia o binário automaticamente ao detectar mudanças em arquivos `.go`, `.html`, `.css` e `.js` (inclusive dentro de `static/`). Ele também expõe um proxy com recarregamento automático do navegador — para isso, acesse **`http://localhost:8090`** (não a `:8080`) enquanto o air estiver rodando; é o proxy que injeta o script de auto-reload na página.
+
 ## Build (binário de produção)
 
 ```bash

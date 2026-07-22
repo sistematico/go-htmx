@@ -7,11 +7,17 @@ import (
 
 var (
 	Home     = parse("index.html")
+	Videos   = parse("videos.html")
 	NotFound = parse("404.html")
 )
 
 func parse(page string) *template.Template {
-	return template.Must(template.ParseFiles("templates/base.html", "templates/"+page))
+	return template.Must(template.ParseFiles(
+		"templates/base.html",
+		"templates/partials/navbar.html",
+		"templates/partials/footer.html",
+		"templates/"+page,
+	))
 }
 
 func Render(w http.ResponseWriter, tmpl *template.Template, data any) {

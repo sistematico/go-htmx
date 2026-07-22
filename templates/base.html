@@ -2,22 +2,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{.Title}}</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/htmx.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/htmx.min.js"></script>
 </head>
-<body>
-    <header>
-        <a href="/">go-htmx</a>
-    </header>
-    <main>
-        {{template "content" .}}
-    </main>
-    <footer>
-        <p>go-htmx</p>
-    </footer>
+<body hx-boost="true">
+  <header>
+    <div>
+      <img src="/images/Go-Logo_Aqua.png" alt="go-htmx" width="auto" height="75" />
+      <a href="/">Go HTMX</a>
+    </div>
+    {{template "navbar" .}}
+  </header>
+  <main>
+    {{template "content" .}}
+  </main>
+  {{template "footer" .}}
 </body>
 </html>
 {{end}}
